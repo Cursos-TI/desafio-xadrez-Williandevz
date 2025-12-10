@@ -1,77 +1,88 @@
 #include <stdio.h>
 
+void moverTorreDireitaRecursivo(int casasRestantes);
+void moverBispoDiagonalRecursivo(int passoAtual, int totalPassos);
+void moverRainhaEsquerdaRecursivo(int casasRestantes);
+void moverCavaloComplexo(int movimentosVerticais, int movimentosHorizontais);
+
 int main() {
+    const int casasTorre = 5;
+    const int casasBispo = 5;
+    const int casasRainha = 8;
+    const int casasCavaloVertical = 2;
+    const int casasCavaloHorizontal = 1;
 
-    // ============================================================
-    //                  MOVIMENTO DA TORRE (FOR)
-    // ============================================================
-    int casasTorre = 5;
+    printf("Movimento da Torre:\n");
+    moverTorreDireitaRecursivo(casasTorre);
 
-    printf("=== Movimento da Torre ===\n");
-    for(int i = 1; i <= casasTorre; i++){
-        printf("Direita\n");
-    }
+    printf("\n");
 
+    printf("Movimento do Bispo:\n");
+    moverBispoDiagonalRecursivo(1, casasBispo);
 
-    // ============================================================
-    //                 MOVIMENTO DO BISPO (WHILE)
-    // ============================================================
-    int casasBispo = 5;
-    int contador = 1;
+    printf("\n");
 
-    printf("\n=== Movimento do Bispo ===\n");
-    while(contador <= casasBispo){
-        printf("Cima Direita\n");
-        contador++;
-    }
+    printf("Movimento da Rainha:\n");
+    moverRainhaEsquerdaRecursivo(casasRainha);
 
+    printf("\n");
 
-    // ============================================================
-    //               MOVIMENTO DA RAINHA (DO-WHILE)
-    // ============================================================
-    int casasRainha = 8;
-    int passos = 1;
-
-    printf("\n=== Movimento da Rainha ===\n");
-    do {
-        printf("Esquerda\n");
-        passos++;
-    } while(passos <= casasRainha);
-
-
-    // ============================================================
-    //                MOVIMENTO DO CAVALO (LOOPS ANINHADOS)
-    // ============================================================
-    // O cavalo se move em "L":
-    // - 2 casas em uma direção (BAIXO)
-    // - 1 casa perpendicular (ESQUERDA)
-    //
-    // Aqui, usamos:
-    // - Um loop FOR para controlar as duas casas para baixo.
-    // - Um loop WHILE aninhado para executar a casa final para a esquerda.
-    //
-    // A saída deve ser:
-    // Baixo
-    // Baixo
-    // Esquerda
-
-    int casasBaixo = 2;
-    int casasEsquerda = 1;
-
-    printf("\n=== Movimento do Cavalo ===\n");
-
-    // Primeiro movimento: 2 casas para baixo (loop for obrigatório)
-    for(int i = 1; i <= casasBaixo; i++){
-        printf("Baixo\n");
-    }
-
-    // Segundo movimento: 1 casa para a esquerda (loop while aninhado)
-    int j = 1;
-    while(j <= casasEsquerda){
-        printf("Esquerda\n");
-        j++;
-    }
-
+    printf("Movimento do Cavalo:\n");
+    moverCavaloComplexo(casasCavaloVertical, casasCavaloHorizontal);
 
     return 0;
+}
+
+void moverTorreDireitaRecursivo(int casasRestantes) {
+    if (casasRestantes == 0) {
+        return;
+    }
+    printf("Direita\n");
+    moverTorreDireitaRecursivo(casasRestantes - 1);
+}
+
+void moverBispoDiagonalRecursivo(int passoAtual, int totalPassos) {
+    int v, h;
+
+    if (passoAtual > totalPassos) {
+        return;
+    }
+
+    for (v = 0; v < 1; v++) {
+        for (h = 0; h < 1; h++) {
+            printf("Cima Direita\n");
+        }
+    }
+
+    moverBispoDiagonalRecursivo(passoAtual + 1, totalPassos);
+}
+
+void moverRainhaEsquerdaRecursivo(int casasRestantes) {
+    if (casasRestantes == 0) {
+        return;
+    }
+    printf("Esquerda\n");
+    moverRainhaEsquerdaRecursivo(casasRestantes - 1);
+}
+
+void moverCavaloComplexo(int movimentosVerticais, int movimentosHorizontais) {
+    int passoVertical, passoHorizontal;
+
+    for (passoVertical = 1; passoVertical <= movimentosVerticais; passoVertical++) {
+        printf("Cima\n");
+
+        if (passoVertical < movimentosVerticais) {
+            continue;
+        }
+
+        passoHorizontal = 0;
+
+        while (passoHorizontal < movimentosHorizontais) {
+            printf("Direita\n");
+            passoHorizontal++;
+            if (passoHorizontal >= movimentosHorizontais) {
+                break;
+            }
+        }
+    }
 }
