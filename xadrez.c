@@ -5,10 +5,7 @@ int main() {
     // ============================================================
     //                  MOVIMENTO DA TORRE (FOR)
     // ============================================================
-    // A torre no xadrez se move em linha reta. Aqui, simulamoss
-    // 5 casas para a direita usando a estrutura de repetição FOR.
-
-    int casasTorre = 5;  // número de casas que a torre deve andar
+    int casasTorre = 5;
 
     printf("=== Movimento da Torre ===\n");
     for(int i = 1; i <= casasTorre; i++){
@@ -19,12 +16,8 @@ int main() {
     // ============================================================
     //                 MOVIMENTO DO BISPO (WHILE)
     // ============================================================
-    // O bispo anda sempre na diagonal. Neste desafio, iremos
-    // mover o bispo 5 casas na diagonal para cima e à direita.
-    // Representamos isso imprimindo: "Cima Direita".
-
     int casasBispo = 5;
-    int contador = 1; // contador para o while
+    int contador = 1;
 
     printf("\n=== Movimento do Bispo ===\n");
     while(contador <= casasBispo){
@@ -36,10 +29,6 @@ int main() {
     // ============================================================
     //               MOVIMENTO DA RAINHA (DO-WHILE)
     // ============================================================
-    // A rainha pode se mover em qualquer direção, mas o desafio
-    // pede para simular 8 casas para a esquerda.
-    // Usamos a estrutura DO-WHILE para isso.
-
     int casasRainha = 8;
     int passos = 1;
 
@@ -48,6 +37,40 @@ int main() {
         printf("Esquerda\n");
         passos++;
     } while(passos <= casasRainha);
+
+
+    // ============================================================
+    //                MOVIMENTO DO CAVALO (LOOPS ANINHADOS)
+    // ============================================================
+    // O cavalo se move em "L":
+    // - 2 casas em uma direção (BAIXO)
+    // - 1 casa perpendicular (ESQUERDA)
+    //
+    // Aqui, usamos:
+    // - Um loop FOR para controlar as duas casas para baixo.
+    // - Um loop WHILE aninhado para executar a casa final para a esquerda.
+    //
+    // A saída deve ser:
+    // Baixo
+    // Baixo
+    // Esquerda
+
+    int casasBaixo = 2;
+    int casasEsquerda = 1;
+
+    printf("\n=== Movimento do Cavalo ===\n");
+
+    // Primeiro movimento: 2 casas para baixo (loop for obrigatório)
+    for(int i = 1; i <= casasBaixo; i++){
+        printf("Baixo\n");
+    }
+
+    // Segundo movimento: 1 casa para a esquerda (loop while aninhado)
+    int j = 1;
+    while(j <= casasEsquerda){
+        printf("Esquerda\n");
+        j++;
+    }
 
 
     return 0;
